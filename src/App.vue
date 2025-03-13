@@ -3,18 +3,18 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="flex bg-[#272727] min-h-screen">
-    <header class="bg-[#272727] p-4 w-[20%] h-64">
-      <nav class="flex flex-col space-y-4 bg-[#313133] p-4 rounded-md">
-        <RouterLink to="/Reportes" class="text-[#ffff] no-underline bg-[#313133] p-2 rounded-md text-center m-2.5 h-80">Reportes</RouterLink>
-        <RouterLink to="/Insumos" class="text-[#ffff] no-underline bg-[#313133] p-2 rounded-md text-center m-2.5">Insumos</RouterLink>
-        <RouterLink to="/Estadisticas" class="text-[#ffff] no-underline bg-[#313133] p-2 rounded-md text-center m-2.5">Estadisticas</RouterLink>
-        <RouterLink to="/Platillos" class="text-[#ffff] no-underline bg-[#313133] p-2 rounded-md text-center m-2.5">Platillos</RouterLink>
-        <RouterLink to="/Promociones" class="text-[#ffff] no-underline bg-[#313133] p-2 rounded-md text-center m-2.5">Promociones</RouterLink>
+  <div class="bg-[#272727]">
+    <header>
+      <nav class=" bg-[#313133] rounded-[10px] p-[5px] w-[10%]   float-left ">
+        <RouterLink to="/Reportes" class="bg-[#313133] block text-[#ffff] no-underline text-center  p-[25px] rounded-[10px] m-[10px] ">Reportes</RouterLink>
+        <RouterLink to="/Insumos" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Insumos</RouterLink>
+        <RouterLink to="/Estadisticas" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Estadisticas</RouterLink>
+        <RouterLink to="/Platillos" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Platillos</RouterLink>
+        <RouterLink to="/Promociones" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Promociones</RouterLink>
       </nav>
     </header>
 
-    <main class="flex-1 p-4 h-[%100] bg-[#272727]">
+    <main class="h-[90vh] bg-[#313133] rounded-[10px] ml-[12%]">
       <RouterView />
     </main>
   </div>
