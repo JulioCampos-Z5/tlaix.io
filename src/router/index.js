@@ -5,7 +5,7 @@ import Insumos from '../components/Administracion/Insumos.vue'
 import Estadisticas from '../components/Administracion/Estadisticas.vue'
 import Platillos from '../components/Administracion/Platillos.vue'
 import Promociones from '../components/Administracion/Promociones.vue'
-import Promociones from '../components/Administracion/Registros.vue'
+import Registros from '../components/Administracion/Registros.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
