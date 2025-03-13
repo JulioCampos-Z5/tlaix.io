@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Registros</h1>
+        <h1>Registros:  espacio 2</h1>
     </div>
 </template>
 
