@@ -1,20 +1,17 @@
 <template>
     <div>
-        <table>
+        <table class="border border-slate-500 w-full">
             <tr>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
+                <th class="border border-slate-600 w-1/6">Nombre</th>
+                <th class="border border-slate-600 w-1/6">Fecha</th>
+                <th class="border border-slate-600 w-1/6">Descripcion</th>
+                <th class="border border-slate-600 w-1/6">s</th>
             </tr>
             <tr>
-                <td>Reporte 1</td>
-                <td>01/01/2021</td>
-                <td>Reporte de ventas</td>
-                <td>
-                    <button>Ver</button>
-                    <button>Descargar</button>
-                </td>
+                <td class="border border-slate-700">Reporte 1</td>
+                <td class="border border-slate-700">01/01/2021</td>
+                <td class="border border-slate-700">Reporte de ventas</td>
+                <td class="border border-slate-700">| </td>
             </tr>
         </table>
     </div>

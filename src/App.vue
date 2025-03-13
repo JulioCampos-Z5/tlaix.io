@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="bg-[#272727]">
+  <div class="bg-[#272727] ">
     <header>
       <nav class=" bg-[#313133] rounded-[10px] p-[5px] w-[10%]   float-left ">
         <RouterLink to="/Reportes" class="bg-[#313133] block text-[#ffff] no-underline text-center  p-[25px] rounded-[10px] m-[10px] ">Reportes</RouterLink>
@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
     </header>
 
-    <main class="h-[90vh] bg-[#313133] rounded-[10px] ml-[12%]">
+    <main class="h-[98vh] bg-[#313133] rounded-[10px] ml-[12%] ">
       <RouterView />
     </main>
   </div>
