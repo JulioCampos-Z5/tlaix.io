@@ -1,1 +1,2 @@
 DROP TABLE IF EXISTS Historial_Insumos CASCADE;
+Prueba de si ya puedo hacer commits
