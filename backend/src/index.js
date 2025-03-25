@@ -1,11 +1,16 @@
-const express = require('express');
-const { Pool } = require('pg');
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import pkg from 'pg';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
+// Configuración de dotenv
+dotenv.config();
+
+const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -17,15 +22,18 @@ const pool = new Pool({
   }
 });
 
-// Ruta de prueba de conexión a la base de datos
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.json({ message: 'Servidor funcionando' });
+});
+
+// Ruta de prueba de base de datos
 app.get('/api/test-db', async (req, res) => {
   try {
-    // Intenta hacer una consulta simple
     const result = await pool.query('SELECT NOW()');
     res.json({
       status: 'Conexión exitosa',
-      timestamp: result.rows[0].now,
-      message: 'La base de datos está conectada correctamente'
+      timestamp: result.rows[0].now
     });
   } catch (err) {
     console.error('Error de conexión:', err);
@@ -37,7 +45,7 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// Ruta para listar tablas (si quieres ver el esquema)
+// Ruta para listar tablas
 app.get('/api/tables', async (req, res) => {
   try {
     const result = await pool.query(`
