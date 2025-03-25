@@ -6,6 +6,7 @@ import Estadisticas from '../components/Administracion/Estadisticas.vue'
 import Platillos from '../components/Administracion/Platillos.vue'
 import Promociones from '../components/Administracion/Promociones.vue'
 import Registros from '../components/Administracion/Registros.vue'
+import Pedido from '@/components/Cocina/Pedido.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
       path: '/Registros',
       name: 'Registros',
       component: Registros,
+    },
+    {
+      path: '/Pedido',
+      name: 'Pedido',
+      component: Pedido,
     },
   ],
 })

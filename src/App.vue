@@ -12,6 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/Platillos" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Platillos</RouterLink>
         <RouterLink to="/Promociones" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Promociones</RouterLink>
         <RouterLink to="/Registros" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Registros</RouterLink>
+        <RouterLink to="/Pedido" class="bg-[#313133] block text-[#ffff] no-underline text-center p-[25px] rounded-[10px]  m-[10px]">Pedido</RouterLink>
       </nav>
     </header>
 

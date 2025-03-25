@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const API_URL = 'postgresql://postgres:aSIYCALxPBZMXoHwWmVmJTbtljqWXBjr@turntable.proxy.rlwy.net:59883/railway'; // URL base de tu API
+const API_URL = 'https://tlaix-production.up.railway.app/'; // URL base de tu API
 
 class ApiService {
     // Método genérico para obtener datos

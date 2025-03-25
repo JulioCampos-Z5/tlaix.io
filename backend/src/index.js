@@ -11,7 +11,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 
+        'postgresql://postgres:bUWTelAZEaDxvMmSrWWEAOYcCfWFONyT@gondola.proxy.rlwy.net:57076/railway'
+    ]
+}));
 app.use(express.json());
 
 // Configuración de la conexión a PostgreSQL
@@ -67,6 +71,25 @@ app.get('/api/tables', async (req, res) => {
   }
 });
 
+// ruta para obtener pedidos
+app.get('/api/pedidos', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT * FROM pedidos');
+      res.json({
+        status: 'Éxito',
+        total: result.rows.length,
+        pedidos: result.rows
+      });
+    } catch (err) {
+      console.error('Error al obtener pedidos:', err);
+      res.status(500).json({ 
+        status: 'Error',
+        message: 'No se pudieron obtener los pedidos',
+        error: err.message 
+      });
+    }
+  });
+  
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en puerto ${port}`);
