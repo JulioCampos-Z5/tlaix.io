@@ -1,7 +1,7 @@
 // src/services/pedidosService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://tlaixrepo-production.up.railway.app/Registros'; // Cambia esto por tu URL de producción
+const API_BASE_URL = 'https://tlaixio-production.up.railway.app/'; // Cambia esto por tu URL de producción
 
 export default {
   async obtenerPedidos() {
