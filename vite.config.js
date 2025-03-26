@@ -10,7 +10,7 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
   ],
-  base: '/', 
+  base: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -18,10 +18,12 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: process.env.PORT || 4173
+    port: process.env.PORT || 4173,
+    allowedHosts: ['tlaixio-production.up.railway.app']
   },
   preview: {
     host: '0.0.0.0',
-    port: process.env.PORT || 4173
+    port: process.env.PORT || 4173,
+    allowedHosts: ['tlaixio-production.up.railway.app']
   }
 })
