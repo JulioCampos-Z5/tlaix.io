@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors({
     origin: ['http://localhost:5173', 
-        'postgresql://postgres:bUWTelAZEaDxvMmSrWWEAOYcCfWFONyT@gondola.proxy.rlwy.net:57076/railway'
+        'https://tlaixio-production.up.railway.app/'
     ]
 }));
 app.use(express.json());
