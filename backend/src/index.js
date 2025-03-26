@@ -12,10 +12,11 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:5173', 
-        'https://tlaixio-production.up.railway.app/'
-    ]
+  origin: 'https://tlaixio-production.up.railway.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
+
 app.use(express.json());
 
 // Configuración de la conexión a PostgreSQL
