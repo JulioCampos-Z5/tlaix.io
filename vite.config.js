@@ -20,10 +20,5 @@ export default defineConfig({
     port: process.env.PORT || 4173,
     host: true,
     allowedHosts: ['tlaixio-production.up.railway.app']
-  },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
-  },
+  }
 })
