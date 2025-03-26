@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://tlaixio-production.up.railway.app',
+  origin: 'https://tlaixrepo-production.up.railway.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
