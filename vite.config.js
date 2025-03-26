@@ -10,9 +10,15 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
   ],
+  base: 'https://JulioCampos-Z5.github.io/tlaix.io/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  preview: {
+    port: process.env.PORT || 4173,
+    host: true,
+    allowedHosts: ['tlaixio-production.up.railway.app']
+  }
 })
