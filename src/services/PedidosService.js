@@ -1,7 +1,12 @@
 // src/services/pedidosService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://tlaixio-production.up.railway.app/'; // Cambia esto por tu URL de producción
+const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
 
 export default {
   async obtenerPedidos() {
