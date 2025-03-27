@@ -1,7 +1,7 @@
 // src/services/pedidosService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'https://tlaixrepo-production.up.railway.app'; // Cambia esto por tu URL de producción
+const VITE_API_URL = 'https://tlaixrepo-production.up.railway.app'; // Cambia esto por tu URL de producción
 
 export default {
   async obtenerPedidos() {
