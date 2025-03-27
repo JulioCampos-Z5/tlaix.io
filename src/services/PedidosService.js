@@ -1,15 +1,16 @@
 // src/services/pedidosService.js
 import axios from 'axios';
 
-const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
+const API_BASE_URL = 'https://tlaixrepo-production.up.railway.app'; // Cambia esto por tu URL de producción
 
 export default {
-  getPedidos() {
-    return apiClient.get('/api/pedidos')
+  async obtenerPedidos() {
+    try {
+      const response = await axios.get(`${VITE_API_URL}/pedidos`);
+      return response.data.pedidos;
+    } catch (error) {
+      console.error('Error al obtener pedidos:', error);
+      throw error;
+    }
   }
 }
