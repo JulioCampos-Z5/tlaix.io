@@ -36,7 +36,7 @@
   </template>
   
   <script>
-import pedidosService from '@/services/PedidosService.js'
+import pedidosService from '@/services/PedidosService'
 
 export default {
   data() {
