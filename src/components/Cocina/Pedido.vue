@@ -36,25 +36,26 @@
   </template>
   
   <script>
-  import pedidosService from '@/services/PedidosService';
-  
-  export default {
-    name: 'PedidosComponent',
-    data() {
-      return {
-        pedidos: [],
-        loading: true,
-        error: null
-      }
-    },
-    async mounted() {
+import pedidosService from '@/services/PedidosService'
+
+export default {
+  data() {
+    return {
+      pedidos: []
+    }
+  },
+  methods: {
+    async fetchPedidos() {
       try {
-        this.pedidos = await pedidosService.obtenerPedidos();
-        this.loading = false;
+        this.pedidos = await pedidosService.obtenerPedidos()
       } catch (error) {
-        this.error = 'No se pudieron cargar los pedidos';
-        this.loading = false;
+        // Manejo de errores
+        console.error('No se pudieron cargar los pedidos', error)
       }
     }
+  },
+  mounted() {
+    this.fetchPedidos()
   }
+}
   </script>
