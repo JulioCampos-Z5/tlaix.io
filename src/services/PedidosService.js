@@ -9,13 +9,7 @@ const apiClient = axios.create({
 })
 
 export default {
-  async obtenerPedidos() {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/pedidos`);
-      return response.data.pedidos;
-    } catch (error) {
-      console.error('Error al obtener pedidos:', error);
-      throw error;
-    }
+  getPedidos() {
+    return apiClient.get('/api/pedidos')
   }
 }

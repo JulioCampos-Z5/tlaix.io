@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const API_URL = 'https://tlaixrepo-production.up.railway.app/'; // URL base de tu API
+const API_URL = 'https://tlaixrepo-production.up.railway.app'; // URL base de tu API
 
 class ApiService {
     // Método genérico para obtener datos
