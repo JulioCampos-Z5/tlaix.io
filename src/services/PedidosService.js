@@ -17,26 +17,5 @@ export default {
       console.error('Error al obtener pedidos:', error);
       throw error;
     }
-  },
-  
-  // Puedes agregar más métodos según necesites
-  async obtenerPedidoPorId(id) {
-    try {
-      const response = await apiClient.get(`/api/pedidos/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al obtener pedido ${id}:`, error);
-      throw error;
-    }
-  },
-
-  async crearPedido(pedidoData) {
-    try {
-      const response = await apiClient.post('/api/pedidos', pedidoData);
-      return response.data;
-    } catch (error) {
-      console.error('Error al crear pedido:', error);
-      throw error;
-    }
   }
 }

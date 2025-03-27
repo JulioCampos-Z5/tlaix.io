@@ -13,10 +13,9 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors({
   origin: [
-    'https://tlaixrepo-production.up.railway.app',  // Quité la barra al final
-    'https://tlaixio-production.up.railway.app',    // Añadí el dominio de tu frontend
-    'http://localhost:5173',                       // Para desarrollo local
-    '*'                                            // Comodín para pruebas (NO recomendado en producción)
+    'https://tlaixrepo-production.up.railway.app',  
+    'https://tlaixio-production.up.railway.app',    
+    'http://localhost:5173',                       
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -24,7 +23,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Configuración de la conexión a PostgreSQL
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -32,7 +31,7 @@ const pool = new Pool({
   }
 });
 
-// Ruta de prueba
+
 app.get('/', (req, res) => {
   res.json({ message: 'Servidor funcionando' });
 });
@@ -46,7 +45,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Ruta de prueba de base de datos
 app.get('/api/test-db', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
@@ -64,7 +62,6 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// Ruta para listar tablas
 app.get('/api/tables', async (req, res) => {
   try {
     const result = await pool.query(`
@@ -86,7 +83,6 @@ app.get('/api/tables', async (req, res) => {
   }
 });
 
-// ruta para obtener pedidos
 app.get('/api/pedidos', async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM pedidos');
@@ -96,7 +92,7 @@ app.get('/api/pedidos', async (req, res, next) => {
       pedidos: result.rows
     });
   } catch (err) {
-    next(err); // Pasa el error al middleware de manejo de errores
+    next(err); 
   }
 });
   
@@ -111,7 +107,6 @@ const server = app.listen(port, '0.0.0.0', () => {
   console.log(`Servidor corriendo en puerto ${port}`);
 });
 
-// Manejo de errores de servidor
 server.on('error', (error) => {
   console.error('Error en el servidor:', error);
 });
