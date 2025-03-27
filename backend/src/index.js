@@ -3,27 +3,38 @@ import pkg from 'pg';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-// Configuración de dotenv
 dotenv.config();
 
 const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
+// Middleware de logging detallado
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  console.log('Headers:', req.headers);
+  next();
+});
+
+// Configuración de CORS más flexible
 app.use(cors({
-  origin: [
-    'https://tlaixrepo-production.up.railway.app',  
-    'https://tlaixio-production.up.railway.app',    
-    'http://localhost:5173',                       
-  ],
+  origin: '*', // Temporalmente abierto para diagnóstico
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
 
+// Manejo global de errores no capturados
+process.on('uncaughtException', (error) => {
+  console.error('UNCAUGHT EXCEPTION:', error);
+});
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('UNHANDLED REJECTION:', reason);
+});
+
+// Configuración de base de datos con más logging
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -31,72 +42,68 @@ const pool = new Pool({
   }
 });
 
+// Prueba de conexión explícita
+async function conectarBaseDatos() {
+  try {
+    const cliente = await pool.connect();
+    console.log('✅ Conexión a base de datos establecida');
+    cliente.release();
+  } catch (error) {
+    console.error('❌ Error de conexión a base de datos:', error);
+    // Esto ayudará a identificar problemas de conexión
+    console.error('Detalles del error:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+  }
+}
+
+conectarBaseDatos();
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Servidor funcionando' });
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ 
-    status: 'Error',
-    message: 'Ocurrió un error en el servidor',
-    error: err.message 
+  res.json({ 
+    status: 'OK', 
+    message: 'Servidor funcionando',
+    timestamp: new Date().toISOString()
   });
-});
-
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({
-      status: 'Conexión exitosa',
-      timestamp: result.rows[0].now
-    });
-  } catch (err) {
-    console.error('Error de conexión:', err);
-    res.status(500).json({ 
-      status: 'Error',
-      message: 'No se pudo conectar a la base de datos',
-      error: err.message 
-    });
-  }
-});
-
-app.get('/api/tables', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT table_name 
-      FROM information_schema.tables 
-      WHERE table_schema = 'public'
-    `);
-    res.json({
-      status: 'Éxito',
-      tables: result.rows.map(row => row.table_name)
-    });
-  } catch (err) {
-    console.error('Error al listar tablas:', err);
-    res.status(500).json({ 
-      status: 'Error',
-      message: 'No se pudieron listar las tablas',
-      error: err.message 
-    });
-  }
 });
 
 app.get('/api/pedidos', async (req, res, next) => {
   try {
+    console.log('🔍 Iniciando consulta de pedidos');
     const result = await pool.query('SELECT * FROM pedidos');
+    
+    console.log(`📦 Pedidos encontrados: ${result.rows.length}`);
+    
     res.json({
       status: 'Éxito',
       total: result.rows.length,
       pedidos: result.rows
     });
   } catch (err) {
-    next(err); 
+    console.error('❌ Error en ruta /api/pedidos:', err);
+    next(err);
   }
 });
+
+// Middleware de manejo de errores mejorado
+app.use((err, req, res, next) => {
+  console.error('💥 Error de servidor detallado:', {
+    message: err.message,
+    name: err.name,
+    stack: err.stack
+  });
   
-app.use((req, res, next) => {
+  res.status(500).json({ 
+    status: 'Error',
+    message: 'Error interno del servidor',
+    detailedError: err.message
+  });
+});
+
+// Middleware para rutas no encontradas
+app.use((req, res) => {
   res.status(404).json({
     status: 'Error',
     message: 'Ruta no encontrada'
@@ -104,11 +111,11 @@ app.use((req, res, next) => {
 });
 
 const server = app.listen(port, '0.0.0.0', () => {
-  console.log(`Servidor corriendo en puerto ${port}`);
+  console.log(`🚀 Servidor corriendo en puerto ${port}`);
 });
 
 server.on('error', (error) => {
-  console.error('Error en el servidor:', error);
+  console.error('🔥 Error crítico en el servidor:', error);
 });
 
 export default app;
